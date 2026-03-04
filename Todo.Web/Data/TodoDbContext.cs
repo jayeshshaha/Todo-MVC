@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Todo.Web.Data
 {
-    public class TodoDbContext(DbContextOptions<TodoDbContext> dbContextOptions) : DbContext(dbContextOptions)
+    public class TodoDbContext(DbContextOptions<TodoDbContext> dbContextOptions) : IdentityDbContext(dbContextOptions)
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

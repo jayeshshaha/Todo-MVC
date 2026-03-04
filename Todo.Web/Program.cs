@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Todo.Web.Data;
 
@@ -13,6 +14,14 @@ namespace Todo.Web
             {
                 option.UseSqlite(builder.Configuration.GetConnectionString("Default"));
             });
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireDigit = false;
+            })
+                .AddEntityFrameworkStores<TodoDbContext>()
+                .AddDefaultTokenProviders();
 
             var app = builder.Build();
 
